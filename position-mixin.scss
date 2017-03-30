@@ -1,0 +1,91 @@
+$screen-sm : 500px;
+$screen-md : 1000px;
+$screen-lg : 1400px;
+
+@mixin box-position($position) {
+
+	position:absolute;
+
+	@if $position == top-left {
+		
+		top:0;
+		left:0;
+
+	} @else if $position == top-center {
+		
+		top:0;
+		left:50%;
+
+	} @else if $position == top-right {
+		
+		top:0;
+		right:0;
+
+	} @else if $position == middle-left{
+		
+		top:50%;
+		left:0;
+
+	} @else if $position == middle-center{
+		
+		top:50%;
+		left:50%;
+	
+	} @else if $position == middle-right{
+		
+		top:50%;
+		right:0;
+	
+	} @else if $position == bottom-left{
+		
+		bottom:0;
+		left:0;
+	
+	} @else if $position == bottom-center{
+		
+		bottom:0;
+		left:50%;
+	
+	
+	} @else if $position == bottom-right{
+		
+		bottom:0;
+		right:0;
+	
+	}
+
+}
+
+$positions: top-left top-center top-right middle-left middle-center middle-right bottom-left bottom-center bottom-right;
+
+@each $position in $positions{	
+	
+	.box-position-xs-#{$position}{
+		@include box-position($position);
+	}
+
+	@media (min-width:$screen-sm){
+		.box-position-sm-#{$position}{
+			@include box-position($position);
+		}
+	}
+
+	@media (min-width:$screen-md){
+		.box-position-md-#{$position}{
+			@include box-position($position);
+		}
+	}
+
+	@media (min-width:$screen-lg){
+		.box-position-lg-#{$position}{
+			@include box-position($position);
+		}
+	}
+}
+
+
+.box{
+	&.box-position-stage{
+		position:relative;
+	}
+}
